@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login - MultiShoppingCar</title>
+    <title>Login - Ferramentaria</title>
 
     <style>
         :root {
@@ -18,7 +19,10 @@
 
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: var(--gray);
+            background-image: url(logo_mendes1.png);
+            background-position: center;
+            background-size: 70%;
+            background-repeat: no-repeat;
             color: #212529;
             margin: 0;
             padding: 0;
@@ -31,15 +35,16 @@
         .container {
             width: 100%;
             max-width: 400px;
-            background-color: var(--light);
+            background-color: rgba(255, 255, 255, 0.7);
             border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
             padding: 2rem;
             margin: 1rem;
         }
 
+
         h1 {
-            color: var(--primary);
+            color: red;
             text-align: center;
             margin-bottom: 1.5rem;
             font-size: 1.8rem;
@@ -51,8 +56,9 @@
         }
 
         .logo h2 {
-            color: var(--primary);
+            color: red;
             margin: 0;
+            font-size: 2rem;
         }
 
         .logo p {
@@ -174,7 +180,7 @@
 <body>
     <div class="container">
         <div class="logo">
-            <h2>MultiShoppingCar</h2>
+            <h2>Ferramentaria</h2>
             <p>Gerenciamento de Estoque</p>
         </div>
 
@@ -205,7 +211,7 @@
     <script>
         const ADMIN_CREDENTIALS = {
             username: "Ferramentaria",
-            password: "MJ2025" 
+            password: "MJ2025"
         };
 
         const loginForm = document.getElementById('loginForm');
@@ -213,20 +219,20 @@
         const togglePasswordBtn = document.getElementById('togglePassword');
         const passwordInput = document.getElementById('password');
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const isLoggedIn = localStorage.getItem('isLoggedIn');
             if (isLoggedIn === 'true') {
                 window.location.href = 'gerenciar.html';
             }
         });
 
-        togglePasswordBtn.addEventListener('click', function() {
+        togglePasswordBtn.addEventListener('click', function () {
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
             this.textContent = type === 'password' ? '👁️' : '🔒';
         });
 
-        loginForm.addEventListener('submit', function(e) {
+        loginForm.addEventListener('submit', function (e) {
             e.preventDefault();
 
             const username = document.getElementById('username').value.trim();
@@ -236,7 +242,7 @@
                 localStorage.setItem('isLoggedIn', 'true');
                 localStorage.setItem('loginTime', new Date().getTime());
                 showMessage('Login realizado com sucesso! Redirecionando...', 'success');
-                
+
                 setTimeout(() => {
                     window.location.href = 'gerenciar.html';
                 }, 1000);
@@ -261,4 +267,5 @@
         console.log('localStorage.setItem("adminPassword", "nova_senha")');
     </script>
 </body>
+
 </html>
