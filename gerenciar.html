@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gerenciamentos</title>
+    <title>Ferramentaria</title>
     <link rel="icon" type="image/png" href="Logo_pagina.png">
+
 
     <style>
         :root {
@@ -18,22 +19,20 @@
             --gray: #f8f9fa;
         }
 
-        * {
-            box-sizing: border-box;
-        }
-
         body {
             font-family: 'Roboto', sans-serif;
+            background-color: var(--gray);
             background-image: url(logo_mendes1.png);
-            background-size: 70%;
-            background-position: center;
+            background-size: 60%;
             background-repeat: no-repeat;
+            background-position: center;
             color: #212529;
             margin: 0;
             padding: 0;
             min-height: 100vh;
         }
 
+        /* Container principal */
         .container {
             width: 100%;
             max-width: 1200px;
@@ -41,6 +40,7 @@
             padding: 1rem;
         }
 
+        /* HEADER */
         header {
             background-color: rgb(193, 221, 230);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -48,81 +48,41 @@
             margin-bottom: 2rem;
         }
 
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .header-title {
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-        }
-
         h1 {
             color: red;
-            margin-bottom: 0;
-            font-size: 1.8rem;
             text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: clamp(1.3rem, 4vw, 2rem);
+            /* Responsivo */
         }
 
-        .user-info span {
-            color: #6c757d;
-        }
-
-        .logout-btn {
-            padding: 0.5rem 1rem;
-            background-color: var(--error);
-            color: var(--light);
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            white-space: nowrap;
-        }
-
-        .logout-btn:hover {
-            background-color: #c9302c;
-        }
-
+        /* MENU */
         nav ul {
             list-style: none;
             padding: 0;
-            margin: 1rem 0 0 0;
+            margin-bottom: 1.5rem;
             text-align: center;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
         }
 
         nav ul li {
-            margin: 0.25rem 0.5rem;
+            display: inline-block;
+            margin: 0 0.5rem;
         }
 
         nav ul li a {
             color: red;
             text-decoration: none;
             font-weight: 500;
-            white-space: nowrap;
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
         }
 
+        /* CONTROLS */
         .controls {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 1.5rem;
             flex-wrap: wrap;
             gap: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .search-box {
@@ -134,368 +94,141 @@
             width: 100%;
             padding: 0.75rem;
             border: 1px solid #ced4da;
-            border-radius: 4px;
+            border-radius: 6px;
             font-size: 1rem;
         }
 
-        .action-buttons {
+        /* Filtros */
+        .filters {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
         }
 
-        button {
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 4px;
+        .filters select {
+            padding: 0.75rem;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
             font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-            white-space: nowrap;
+            min-width: 150px;
         }
 
-        .btn-primary {
-            background-color: var(--primary);
-            color: var(--light);
-        }
-
-        .btn-primary:hover {
-            background-color: #004494;
-        }
-
-        .btn-success {
-            background-color: var(--success);
-            color: var(--light);
-        }
-
-        .btn-success:hover {
-            background-color: #218838;
-        }
-
-        .btn-danger {
-            background-color: var(--error);
-            color: var(--light);
-        }
-
-        .btn-danger:hover {
-            background-color: #c9302c;
-        }
-
-        .btn-secondary {
-            background-color: #6c757d;
-            color: var(--light);
-        }
-
-        .btn-secondary:hover {
-            background-color: #545b62;
-        }
-
-        .table-container {
-            background-color: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(3px);
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-            overflow: hidden;
+        /* CARDS RESPONSIVOS */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
             margin-bottom: 2rem;
-            width: 100%;
+        }
+
+        .stat-card {
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            backdrop-filter: blur(3px);
+        }
+
+        .stat-card .value {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            font-weight: bold;
+            color: red;
+        }
+
+        /* TABELA */
+        .table-container {
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(4px);
+            border-radius: 10px;
             overflow-x: auto;
+            /* Responsivo */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             min-width: 800px;
+            /* Evita quebrar visual em telas menores */
         }
 
-        table th,
-        table td {
-            font-size: 1.1rem;
-            font-weight: 400;
-            color: #000;
-            padding: 0.75rem;
-        }
-
-        tr:hover {
-            background-color: #f8f9fa;
-        }
-
-        .action-cell {
-            white-space: nowrap;
-        }
-
-        .action-cell button {
-            padding: 0.5rem 1rem;
-            margin-right: 0.5rem;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
+        th,
+        td {
             padding: 1rem;
-        }
-
-        .modal-content {
-            background-color: var(--light);
-            border-radius: 8px;
-            width: 100%;
-            max-width: 600px;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 1.5rem;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-header h2 {
-            margin: 0;
-            color: var(--primary);
-            font-size: 1.5rem;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #6c757d;
-            padding: 0;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--dark);
-        }
-
-        input,
-        select,
-        textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
+            border-bottom: 1px solid #e9ecef;
+            text-align: left;
             font-size: 1rem;
-            transition: border-color 0.3s;
         }
 
-        input:focus,
-        select:focus,
-        textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.25);
-        }
-
-        .form-row {
+        /* PAGINAÇÃO */
+        .pagination {
             display: flex;
-            gap: 1rem;
-        }
-
-        .form-row .form-group {
-            flex: 1;
-        }
-
-        .form-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 1rem;
-            margin-top: 2rem;
+            justify-content: center;
+            margin-top: 1.5rem;
             flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
-        .message {
-            padding: 0.75rem;
-            border-radius: 4px;
-            margin-bottom: 1rem;
-            text-align: center;
+        .pagination button {
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            background: white;
+            cursor: pointer;
+            font-size: 1rem;
         }
 
-        .success {
-            background-color: rgba(40, 167, 69, 0.1);
-            border: 1px solid var(--success);
-            color: var(--success);
+        .pagination button.active {
+            background-color: var(--primary);
+            color: white;
         }
 
-        .error {
-            background-color: rgba(217, 83, 79, 0.1);
-            border: 1px solid var(--error);
-            color: var(--error);
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .delete-modal {
-            text-align: center;
-        }
-
-        .delete-modal p {
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-        }
-
-        .access-denied {
-            text-align: center;
-            padding: 3rem;
-        }
-
-        .access-denied h2 {
-            color: var(--error);
-            margin-bottom: 1rem;
-        }
-
-        .access-denied p {
-            color: #6c757d;
-            margin-bottom: 2rem;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 2rem;
-            color: #6c757d;
-        }
-
-        /* Media Queries para responsividade */
+        /* RESPONSIVIDADE TOTAL */
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
+            body {
+                background-size: 150%;
+                background-position: top;
             }
-            
-            .header-title {
-                order: 1;
+
+            nav ul li {
+                display: block;
+                margin: 8px 0;
             }
-            
-            .user-info {
-                order: 2;
-                justify-content: center;
-                width: 100%;
+
+            table {
+                font-size: 0.85rem;
             }
-            
-            nav {
-                order: 3;
-                width: 100%;
+
+            th,
+            td {
+                padding: 0.7rem;
             }
-            
-            h1 {
-                font-size: 1.5rem;
+
+            .filters select {
+                min-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                background-size: 200%;
             }
 
             .controls {
                 flex-direction: column;
             }
 
-            .search-box {
-                min-width: 100%;
+            .stats {
+                grid-template-columns: 1fr;
             }
 
-            .action-buttons {
-                width: 100%;
-                justify-content: space-between;
-            }
-            
-            .action-buttons button {
-                flex: 1;
-                min-width: 140px;
-            }
-
-            .form-row {
-                flex-direction: column;
-                gap: 0;
-            }
-            
-            .form-actions {
-                justify-content: center;
-            }
-            
-            .form-actions button {
-                flex: 1;
-                min-width: 120px;
-            }
-            
-            table th, table td {
-                padding: 0.5rem;
-                font-size: 0.9rem;
-            }
-            
-            .action-cell button {
-                display: block;
-                width: 100%;
-                margin-bottom: 0.5rem;
-            }
-            
-            .modal-content {
-                padding: 1rem;
-            }
-            
-            .modal-header h2 {
-                font-size: 1.3rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0.5rem;
-            }
-            
             h1 {
-                font-size: 1.3rem;
+                font-size: 1.4rem;
             }
-            
-            .user-info {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-            
-            button {
-                padding: 0.6rem 1rem;
-                font-size: 0.9rem;
-            }
-            
-            .action-buttons {
-                flex-direction: column;
-            }
-            
-            .action-buttons button {
-                width: 100%;
-            }
-            
-            .form-actions {
-                flex-direction: column;
-            }
-            
-            .form-actions button {
-                width: 100%;
-            }
-            
-            table {
-                min-width: 600px;
+
+            nav ul li a {
+                font-size: 1rem;
             }
         }
     </style>
@@ -507,157 +240,92 @@
 </head>
 
 <body>
-    <div id="appContent">
-        <div id="mainContent" class="hidden">
-            <header>
-                <div class="container">
-                    <div class="header-content">
-                        <div class="header-title">
-                            <h1>Gerenciar Produtos - Ferramentaria</h1>
-                        </div>
-                        <div class="user-info">
-                            <span>Usuário: Admin</span>
-                            <button class="logout-btn" id="logoutBtn">Sair</button>
-                        </div>
-                        <nav>
-                            <ul>
-                                <li><a href="index.html">Visualizar Estoque</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </header>
+    <header>
+        <div class="container">
+            <h1>Ferramentaria Mendes Junior</h1>
+            <nav>
+                <ul>
+                    <li><a href="login.html">Gerenciar Produtos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-            <div class="container">
-                <div id="message" class="message hidden"></div>
+    <div class="container">
+        <div id="message" class="message hidden"></div>
 
-                <div class="controls">
-                    <div class="search-box">
-                        <input type="text" id="search" placeholder="Pesquisar por código, item ou descrição..." />
-                    </div>
-                    <div class="action-buttons">
-                        <button class="btn-primary" id="addProductBtn">Adicionar Produto</button>
-                        <button class="btn-secondary" id="exportBtn">Exportar Dados</button>
-                    </div>
-                </div>
-
-                <div class="table-container">
-                    <table id="productsTable">
-                        <thead>
-                            <tr>
-                                <th>Código</th>
-                                <th>Item</th>
-                                <th>Descrição</th>
-                                <th>Categoria</th>
-                                <th>Quantidade</th>
-                                <th>Preço Unit.</th>
-                                <th>Valor Total</th>
-                                <th>Última Leva</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tableBody">
-                            <tr>
-                                <td colspan="9" class="loading">Carregando dados do estoque...</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="modal" id="productModal">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h2 id="modalTitle">Adicionar Produto</h2>
-                            <button class="close-btn" id="closeModal">&times;</button>
-                        </div>
-                        <form id="productForm">
-                            <input type="hidden" id="productId">
-
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="code">Código do Produto *</label>
-                                    <input type="text" id="code" required />
-                                </div>
-                                <div class="form-group">
-                                    <label for="name">Nome do Produto *</label>
-                                    <input type="text" id="name" required />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="description">Descrição</label>
-                                <textarea id="description" rows="3"></textarea>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="category">Categoria *</label>
-                                    <select id="category" required>
-                                        <option value="">Selecione uma categoria</option>
-                                        <option value="pecas">Peças</option>
-                                        <option value="acessorios">Acessórios</option>
-                                        <option value="ferramentas">Ferramentas</option>
-                                        <option value="lubrificantes">Lubrificantes</option>
-                                        <option value="outros">Outros</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="lastArrival">Data da Última Leva *</label>
-                                    <input type="date" id="lastArrival" required />
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="quantity">Quantidade em Estoque *</label>
-                                    <input type="number" id="quantity" min="0" required />
-                                </div>
-                                <div class="form-group">
-                                    <label for="minQuantity">Quantidade Mínima *</label>
-                                    <input type="number" id="minQuantity" min="0" required />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="price">Preço Unitário (R$) *</label>
-                                <input type="number" id="price" min="0" step="0.01" required />
-                            </div>
-
-                            <div class="form-actions">
-                                <button type="button" class="btn-secondary" id="cancelBtn">Cancelar</button>
-                                <button type="submit" class="btn-success" id="saveBtn">Salvar Produto</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                <div class="modal" id="deleteModal">
-                    <div class="modal-content delete-modal">
-                        <div class="modal-header">
-                            <h2>Confirmar Exclusão</h2>
-                            <button class="close-btn" id="closeDeleteModal">&times;</button>
-                        </div>
-                        <p id="deleteMessage">Tem certeza que deseja excluir este produto?</p>
-                        <div class="form-actions">
-                            <button type="button" class="btn-secondary" id="cancelDeleteBtn">Cancelar</button>
-                            <button type="button" class="btn-danger" id="confirmDeleteBtn">Excluir</button>
-                        </div>
-                    </div>
-                </div>
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="search" placeholder="Pesquisar por código, item ou descrição..." />
+            </div>
+            <div class="filters">
+                <select id="categoryFilter">
+                    <option value="">Todas as categorias</option>
+                    <option value="pecas">Peças</option>
+                    <option value="acessorios">Acessórios</option>
+                    <option value="ferramentas">Ferramentas</option>
+                    <option value="lubrificantes">Lubrificantes</option>
+                </select>
+                <select id="statusFilter">
+                    <option value="">Todos os status</option>
+                    <option value="available">Disponível</option>
+                    <option value="low">Estoque Baixo</option>
+                    <option value="out">Sem Estoque</option>
+                </select>
             </div>
         </div>
 
-        <div id="accessDenied" class="access-denied hidden">
-            <div class="container">
-                <h2>Acesso Negado</h2>
-                <p>Você precisa estar logado para acessar esta página.</p>
-                <button class="btn-primary" onclick="window.location.href='login.html'">Fazer Login</button>
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Total de Itens</h3>
+                <div class="value" id="totalItems">0</div>
+                <div class="subtitle">No estoque</div>
             </div>
+            <div class="stat-card">
+                <h3>Valor Total</h3>
+                <div class="value" id="totalValue">R$ 0,00</div>
+                <div class="subtitle">Em estoque</div>
+            </div>
+            <div class="stat-card">
+                <h3>Itens com Estoque Baixo</h3>
+                <div class="value" id="lowStockItems">0</div>
+                <div class="subtitle">Precisam de reposição</div>
+            </div>
+            <div class="stat-card">
+                <h3>Última Atualização</h3>
+                <div class="value" id="lastUpdate">-</div>
+                <div class="subtitle">Do estoque</div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table id="inventoryTable">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Item</th>
+                        <th>Descrição</th>
+                        <th>Categoria</th>
+                        <th>Quantidade</th>
+                        <th>Preço Unit.</th>
+                        <th>Valor Total</th>
+                        <th>Última Leva</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr>
+                        <td colspan="9" class="loading" id="loadingMessage">Carregando dados do estoque...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pagination" id="pagination">
         </div>
     </div>
 
     <script>
-        // O restante do código JavaScript permanece o mesmo
         const firebaseConfig = {
             apiKey: "AIzaSyDk4G22OBWTsF_kHqlLSqKD3qMqGXH4ct8",
             authDomain: "sorteio-fc2fd.firebaseapp.com",
@@ -671,64 +339,30 @@
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
 
-        function checkAuthentication() {
-            const isLoggedIn = localStorage.getItem('isLoggedIn');
-            const loginTime = localStorage.getItem('loginTime');
-            const currentTime = new Date().getTime();
-            const sessionDuration = 8 * 60 * 60 * 1000; // 8 horas em milissegundos
-
-            if (isLoggedIn === 'true' && loginTime && (currentTime - parseInt(loginTime)) < sessionDuration) {
-                return true;
-            } else {
-                localStorage.removeItem('isLoggedIn');
-                localStorage.removeItem('loginTime');
-                return false;
-            }
-        }
-
-        const appContent = document.getElementById('appContent');
-        const mainContent = document.getElementById('mainContent');
-        const accessDenied = document.getElementById('accessDenied');
         const tableBody = document.getElementById('tableBody');
         const searchInput = document.getElementById('search');
-        const addProductBtn = document.getElementById('addProductBtn');
-        const exportBtn = document.getElementById('exportBtn');
-        const productModal = document.getElementById('productModal');
-        const deleteModal = document.getElementById('deleteModal');
-        const productForm = document.getElementById('productForm');
-        const modalTitle = document.getElementById('modalTitle');
-        const closeModalBtn = document.getElementById('closeModal');
-        const cancelBtn = document.getElementById('cancelBtn');
-        const closeDeleteModalBtn = document.getElementById('closeDeleteModal');
-        const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
-        const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
-        const deleteMessage = document.getElementById('deleteMessage');
-        const logoutBtn = document.getElementById('logoutBtn');
+        const categoryFilter = document.getElementById('categoryFilter');
+        const statusFilter = document.getElementById('statusFilter');
+        const paginationContainer = document.getElementById('pagination');
+        const totalItemsElement = document.getElementById('totalItems');
+        const totalValueElement = document.getElementById('totalValue');
+        const lowStockItemsElement = document.getElementById('lowStockItems');
+        const lastUpdateElement = document.getElementById('lastUpdate');
+        const loadingMessage = document.getElementById('loadingMessage');
 
-        let currentEditingId = null;
-        let currentDeletingId = null;
+        let currentPage = 1;
+        const itemsPerPage = 8;
         let inventoryData = [];
         let filteredData = [];
 
         document.addEventListener('DOMContentLoaded', function () {
-            if (checkAuthentication()) {
-                mainContent.classList.remove('hidden');
-                accessDenied.classList.add('hidden');
-                loadInventoryData();
-                setupEventListeners();
-            } else {
-                mainContent.classList.add('hidden');
-                accessDenied.classList.remove('hidden');
-            }
-        });
-
-        logoutBtn.addEventListener('click', function () {
-            localStorage.removeItem('isLoggedIn');
-            localStorage.removeItem('loginTime');
-            window.location.href = 'login.html';
+            loadInventoryData();
+            setupEventListeners();
         });
 
         function loadInventoryData() {
+            loadingMessage.style.display = 'table-cell';
+
             database.ref('estoque').once('value')
                 .then((snapshot) => {
                     const data = snapshot.val();
@@ -741,27 +375,78 @@
                         });
                     } else {
                         inventoryData = [];
+                        initializeSampleData();
                     }
 
                     filteredData = [...inventoryData];
+                    updateStats();
                     renderTable();
+                    updateLastUpdate();
+                    loadingMessage.style.display = 'none';
                 })
                 .catch((error) => {
                     console.error('Erro ao carregar dados:', error);
                     showMessage('Erro ao carregar dados do estoque.', 'error');
+                    loadingMessage.textContent = 'Erro ao carregar dados';
+                });
+        }
+
+        function initializeSampleData() {
+            const sampleData = [
+                {
+                    code: "P001",
+                    name: "Filtro de Óleo",
+                    description: "Filtro de óleo para motor 1.0",
+                    category: "pecas",
+                    quantity: 45,
+                    minQuantity: 20,
+                    price: 24.90,
+                    lastArrival: "15/03/2023",
+                    createdAt: new Date().toISOString()
+                },
+                {
+                    code: "P002",
+                    name: "Pastilha de Freio",
+                    description: "Pastilha de freio dianteira",
+                    category: "pecas",
+                    quantity: 12,
+                    minQuantity: 15,
+                    price: 89.90,
+                    lastArrival: "22/03/2023",
+                    createdAt: new Date().toISOString()
+                },
+                {
+                    code: "A001",
+                    name: "Capa de Banco",
+                    description: "Capa universal para bancos dianteiros",
+                    category: "acessorios",
+                    quantity: 8,
+                    minQuantity: 10,
+                    price: 129.90,
+                    lastArrival: "10/03/2023",
+                    createdAt: new Date().toISOString()
+                }
+            ];
+
+            const updates = {};
+            sampleData.forEach((item, index) => {
+                const newKey = database.ref('estoque').push().key;
+                updates[`estoque/${newKey}`] = item;
+            });
+
+            database.ref().update(updates)
+                .then(() => {
+                    loadInventoryData(); // Recarregar dados após inserção
+                })
+                .catch((error) => {
+                    console.error('Erro ao inicializar dados:', error);
                 });
         }
 
         function setupEventListeners() {
             searchInput.addEventListener('input', handleSearch);
-            addProductBtn.addEventListener('click', openAddModal);
-            exportBtn.addEventListener('click', exportData);
-            closeModalBtn.addEventListener('click', closeModal);
-            cancelBtn.addEventListener('click', closeModal);
-            closeDeleteModalBtn.addEventListener('click', closeDeleteModal);
-            cancelDeleteBtn.addEventListener('click', closeDeleteModal);
-            confirmDeleteBtn.addEventListener('click', confirmDelete);
-            productForm.addEventListener('submit', handleFormSubmit);
+            categoryFilter.addEventListener('change', handleFilter);
+            statusFilter.addEventListener('change', handleFilter);
 
             database.ref('estoque').on('value', (snapshot) => {
                 const data = snapshot.val();
@@ -773,23 +458,65 @@
                         };
                     });
                     filteredData = [...inventoryData];
+                    updateStats();
                     renderTable();
+                    updateLastUpdate();
                 }
             });
         }
 
+        function updateStats() {
+            const totalItems = inventoryData.reduce((sum, item) => sum + item.quantity, 0);
+            const totalValue = inventoryData.reduce((sum, item) => sum + (item.quantity * item.price), 0);
+            const lowStockItems = inventoryData.filter(item => item.quantity > 0 && item.quantity <= item.minQuantity).length;
+
+            totalItemsElement.textContent = totalItems;
+            totalValueElement.textContent = `R$ ${totalValue.toFixed(2).replace('.', ',')}`;
+            lowStockItemsElement.textContent = lowStockItems;
+        }
+
+        function updateLastUpdate() {
+            const now = new Date();
+            const formattedDate = now.toLocaleDateString('pt-BR') + ' ' + now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+            lastUpdateElement.textContent = formattedDate;
+        }
+
         function handleSearch() {
             const searchTerm = searchInput.value.toLowerCase();
-            filterData(searchTerm);
+            filterData();
+            currentPage = 1;
             renderTable();
         }
 
-        function filterData(searchTerm = '') {
+        function handleFilter() {
+            filterData();
+            currentPage = 1;
+            renderTable();
+        }
+
+        function filterData() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const categoryValue = categoryFilter.value;
+            const statusValue = statusFilter.value;
+
             filteredData = inventoryData.filter(item => {
-                return !searchTerm ||
+                const matchesSearch = !searchTerm ||
                     item.code.toLowerCase().includes(searchTerm) ||
                     item.name.toLowerCase().includes(searchTerm) ||
                     item.description.toLowerCase().includes(searchTerm);
+
+                const matchesCategory = !categoryValue || item.category === categoryValue;
+
+                let matchesStatus = true;
+                if (statusValue === 'available') {
+                    matchesStatus = item.quantity > item.minQuantity;
+                } else if (statusValue === 'low') {
+                    matchesStatus = item.quantity > 0 && item.quantity <= item.minQuantity;
+                } else if (statusValue === 'out') {
+                    matchesStatus = item.quantity === 0;
+                }
+
+                return matchesSearch && matchesCategory && matchesStatus;
             });
         }
 
@@ -800,188 +527,49 @@
                 const row = document.createElement('tr');
                 row.innerHTML = `<td colspan="9" class="loading">Nenhum produto encontrado</td>`;
                 tableBody.appendChild(row);
+                paginationContainer.innerHTML = '';
                 return;
             }
 
-            filteredData.forEach(item => {
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const paginatedData = filteredData.slice(startIndex, endIndex);
+
+            paginatedData.forEach(item => {
                 const row = document.createElement('tr');
+
+                let statusClass = '';
+                let statusText = '';
+                if (item.quantity === 0) {
+                    statusClass = 'status-out';
+                    statusText = 'Sem Estoque';
+                } else if (item.quantity <= item.minQuantity) {
+                    statusClass = 'status-low';
+                    statusText = 'Estoque Baixo';
+                } else {
+                    statusClass = 'status-available';
+                    statusText = 'Disponível';
+                }
 
                 const totalValue = (item.quantity * item.price).toFixed(2).replace('.', ',');
                 const unitPrice = item.price.toFixed(2).replace('.', ',');
-                const formattedDate = formatDateForDisplay(item.lastArrival);
 
                 row.innerHTML = `
                     <td>${item.code}</td>
                     <td>${item.name}</td>
                     <td>${item.description}</td>
                     <td>${formatCategory(item.category)}</td>
-                    <td>${item.quantity}</td>
+                    <td class="${item.quantity <= item.minQuantity ? 'low-stock' : ''}">${item.quantity}</td>
                     <td>R$ ${unitPrice}</td>
                     <td>R$ ${totalValue}</td>
-                    <td>${formattedDate}</td>
-                    <td class="action-cell">
-                        <button class="btn-primary edit-btn" data-id="${item.id}">Editar</button>
-                        <button class="btn-danger delete-btn" data-id="${item.id}">Excluir</button>
-                    </td>
+                    <td>${item.lastArrival}</td>
+                    <td><span class="status-badge ${statusClass}">${statusText}</span></td>
                 `;
 
                 tableBody.appendChild(row);
             });
 
-            document.querySelectorAll('.edit-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const id = e.target.getAttribute('data-id');
-                    openEditModal(id);
-                });
-            });
-
-            document.querySelectorAll('.delete-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const id = e.target.getAttribute('data-id');
-                    openDeleteModal(id);
-                });
-            });
-        }
-
-        function openAddModal() {
-            currentEditingId = null;
-            modalTitle.textContent = 'Adicionar Produto';
-            productForm.reset();
-            document.getElementById('productId').value = '';
-
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('lastArrival').value = today;
-
-            productModal.style.display = 'flex';
-        }
-
-        function openEditModal(id) {
-            const product = inventoryData.find(item => item.id === id);
-            if (!product) return;
-
-            currentEditingId = id;
-            modalTitle.textContent = 'Editar Produto';
-
-            document.getElementById('productId').value = product.id;
-            document.getElementById('code').value = product.code;
-            document.getElementById('name').value = product.name;
-            document.getElementById('description').value = product.description;
-            document.getElementById('category').value = product.category;
-            document.getElementById('quantity').value = product.quantity;
-            document.getElementById('minQuantity').value = product.minQuantity;
-            document.getElementById('price').value = product.price;
-            document.getElementById('lastArrival').value = product.lastArrival;
-
-            productModal.style.display = 'flex';
-        }
-
-        function closeModal() {
-            productModal.style.display = 'none';
-        }
-
-        function openDeleteModal(id) {
-            const product = inventoryData.find(item => item.id === id);
-            if (!product) return;
-
-            currentDeletingId = id;
-            deleteMessage.textContent = `Tem certeza que deseja excluir o produto "${product.name}" (${product.code})?`;
-            deleteModal.style.display = 'flex';
-        }
-
-        function closeDeleteModal() {
-            deleteModal.style.display = 'none';
-            currentDeletingId = null;
-        }
-
-        function confirmDelete() {
-            if (currentDeletingId === null) return;
-
-            database.ref(`estoque/${currentDeletingId}`).remove()
-                .then(() => {
-                    showMessage('Produto excluído com sucesso!', 'success');
-                    closeDeleteModal();
-                })
-                .catch((error) => {
-                    console.error('Erro ao excluir produto:', error);
-                    showMessage('Erro ao excluir produto.', 'error');
-                });
-        }
-
-        function handleFormSubmit(e) {
-            e.preventDefault();
-
-            const formData = {
-                code: document.getElementById('code').value.trim(),
-                name: document.getElementById('name').value.trim(),
-                description: document.getElementById('description').value.trim(),
-                category: document.getElementById('category').value,
-                quantity: parseInt(document.getElementById('quantity').value),
-                minQuantity: parseInt(document.getElementById('minQuantity').value),
-                price: parseFloat(document.getElementById('price').value),
-                lastArrival: document.getElementById('lastArrival').value,
-                updatedAt: new Date().toISOString()
-            };
-
-            if (!formData.code || !formData.name || !formData.category ||
-                isNaN(formData.quantity) || isNaN(formData.minQuantity) || isNaN(formData.price) ||
-                !formData.lastArrival) {
-                showMessage('Por favor, preencha todos os campos obrigatórios.', 'error');
-                return;
-            }
-
-            if (currentEditingId === null) {
-                formData.createdAt = new Date().toISOString();
-
-                const existingProduct = inventoryData.find(item => item.code === formData.code);
-                if (existingProduct) {
-                    showMessage('Já existe um produto com este código.', 'error');
-                    return;
-                }
-
-                database.ref('estoque').push(formData)
-                    .then(() => {
-                        showMessage('Produto adicionado com sucesso!', 'success');
-                        closeModal();
-                    })
-                    .catch((error) => {
-                        console.error('Erro ao adicionar produto:', error);
-                        showMessage('Erro ao adicionar produto.', 'error');
-                    });
-            } else {
-                const codeExists = inventoryData.some(item =>
-                    item.code === formData.code && item.id !== currentEditingId);
-
-                if (codeExists) {
-                    showMessage('Já existe um produto com este código.', 'error');
-                    return;
-                }
-
-                database.ref(`estoque/${currentEditingId}`).update(formData)
-                    .then(() => {
-                        showMessage('Produto atualizado com sucesso!', 'success');
-                        closeModal();
-                    })
-                    .catch((error) => {
-                        console.error('Erro ao atualizar produto:', error);
-                        showMessage('Erro ao atualizar produto.', 'error');
-                    });
-            }
-        }
-
-        function exportData() {
-            const dataStr = JSON.stringify(inventoryData, null, 2);
-            const dataBlob = new Blob([dataStr], { type: 'application/json' });
-
-            const url = URL.createObjectURL(dataBlob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'estoque_multishoppingcar.json';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
-
-            showMessage('Dados exportados com sucesso!', 'success');
+            renderPagination();
         }
 
         function formatCategory(category) {
@@ -989,15 +577,50 @@
                 'pecas': 'Peças',
                 'acessorios': 'Acessórios',
                 'ferramentas': 'Ferramentas',
-                'lubrificantes': 'Lubrificantes',
-                'outros': 'Outros'
+                'lubrificantes': 'Lubrificantes'
             };
             return categories[category] || category;
         }
 
-        function formatDateForDisplay(dateString) {
-            const date = new Date(dateString);
-            return date.toLocaleDateString('pt-BR');
+        function renderPagination() {
+            const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
+            paginationContainer.innerHTML = '';
+
+            if (totalPages <= 1) return;
+
+            const prevButton = document.createElement('button');
+            prevButton.innerHTML = '&laquo;';
+            prevButton.disabled = currentPage === 1;
+            prevButton.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderTable();
+                }
+            });
+            paginationContainer.appendChild(prevButton);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const pageButton = document.createElement('button');
+                pageButton.textContent = i;
+                pageButton.classList.toggle('active', i === currentPage);
+                pageButton.addEventListener('click', () => {
+                    currentPage = i;
+                    renderTable();
+                });
+                paginationContainer.appendChild(pageButton);
+            }
+
+            const nextButton = document.createElement('button');
+            nextButton.innerHTML = '&raquo;';
+            nextButton.disabled = currentPage === totalPages;
+            nextButton.addEventListener('click', () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderTable();
+                }
+            });
+            paginationContainer.appendChild(nextButton);
         }
 
         function showMessage(text, type) {
