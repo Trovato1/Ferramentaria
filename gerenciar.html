@@ -7,7 +7,6 @@
     <title>Gerenciamentos</title>
     <link rel="icon" type="image/png" href="Logo_pagina.png">
 
-
     <style>
         :root {
             --primary: #0056b3;
@@ -17,6 +16,10 @@
             --error: #d9534f;
             --success: #28a745;
             --gray: #f8f9fa;
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
@@ -47,35 +50,31 @@
 
         .header-content {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            text-align: center;
-            gap: 0.5rem;
-        }
-
-        .user-info {
-            position: absolute;
-            top: 0;
-            right: 0;
-            display: flex;
-            align-items: center;
+            position: relative;
+            flex-wrap: wrap;
             gap: 1rem;
         }
 
+        .header-title {
+            flex: 1;
+            min-width: 200px;
+        }
 
-
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
 
         h1 {
             color: red;
             margin-bottom: 0;
             font-size: 1.8rem;
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+            text-align: center;
         }
 
         .user-info span {
@@ -90,6 +89,7 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 0.9rem;
+            white-space: nowrap;
         }
 
         .logout-btn:hover {
@@ -101,17 +101,20 @@
             padding: 0;
             margin: 1rem 0 0 0;
             text-align: center;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         nav ul li {
-            display: inline-block;
-            margin: 0 0.5rem;
+            margin: 0.25rem 0.5rem;
         }
 
         nav ul li a {
             color: red;
             text-decoration: none;
             font-weight: 500;
+            white-space: nowrap;
         }
 
         .controls {
@@ -124,7 +127,7 @@
 
         .search-box {
             flex: 1;
-            min-width: 300px;
+            min-width: 250px;
         }
 
         .search-box input {
@@ -138,6 +141,7 @@
         .action-buttons {
             display: flex;
             gap: 1rem;
+            flex-wrap: wrap;
         }
 
         button {
@@ -148,6 +152,7 @@
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s;
+            white-space: nowrap;
         }
 
         .btn-primary {
@@ -193,12 +198,14 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
             overflow: hidden;
             margin-bottom: 2rem;
+            width: 100%;
+            overflow-x: auto;
         }
-
 
         table {
             width: 100%;
             border-collapse: collapse;
+            min-width: 800px;
         }
 
         table th,
@@ -206,8 +213,8 @@
             font-size: 1.1rem;
             font-weight: 400;
             color: #000;
+            padding: 0.75rem;
         }
-
 
         tr:hover {
             background-color: #f8f9fa;
@@ -233,16 +240,17 @@
             z-index: 1000;
             justify-content: center;
             align-items: center;
+            padding: 1rem;
         }
 
         .modal-content {
             background-color: var(--light);
             border-radius: 8px;
-            width: 90%;
+            width: 100%;
             max-width: 600px;
             max-height: 90vh;
             overflow-y: auto;
-            padding: 2rem;
+            padding: 1.5rem;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
         }
 
@@ -256,6 +264,7 @@
         .modal-header h2 {
             margin: 0;
             color: var(--primary);
+            font-size: 1.5rem;
         }
 
         .close-btn {
@@ -264,6 +273,12 @@
             font-size: 1.5rem;
             cursor: pointer;
             color: #6c757d;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .form-group {
@@ -310,6 +325,7 @@
             justify-content: flex-end;
             gap: 1rem;
             margin-top: 2rem;
+            flex-wrap: wrap;
         }
 
         .message {
@@ -365,32 +381,121 @@
             color: #6c757d;
         }
 
+        /* Media Queries para responsividade */
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
-                gap: 1rem;
+                text-align: center;
+            }
+            
+            .header-title {
+                order: 1;
+            }
+            
+            .user-info {
+                order: 2;
+                justify-content: center;
+                width: 100%;
+            }
+            
+            nav {
+                order: 3;
+                width: 100%;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
             }
 
             .controls {
                 flex-direction: column;
             }
 
+            .search-box {
+                min-width: 100%;
+            }
+
             .action-buttons {
                 width: 100%;
                 justify-content: space-between;
             }
-
-            .table-container {
-                overflow-x: auto;
-            }
-
-            table {
-                min-width: 800px;
+            
+            .action-buttons button {
+                flex: 1;
+                min-width: 140px;
             }
 
             .form-row {
                 flex-direction: column;
                 gap: 0;
+            }
+            
+            .form-actions {
+                justify-content: center;
+            }
+            
+            .form-actions button {
+                flex: 1;
+                min-width: 120px;
+            }
+            
+            table th, table td {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .action-cell button {
+                display: block;
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
+            
+            .modal-content {
+                padding: 1rem;
+            }
+            
+            .modal-header h2 {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0.5rem;
+            }
+            
+            h1 {
+                font-size: 1.3rem;
+            }
+            
+            .user-info {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            button {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .action-buttons button {
+                width: 100%;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .form-actions button {
+                width: 100%;
+            }
+            
+            table {
+                min-width: 600px;
             }
         }
     </style>
@@ -407,17 +512,19 @@
             <header>
                 <div class="container">
                     <div class="header-content">
-                        <h1>Gerenciar Produtos - Ferramentaria</h1>
+                        <div class="header-title">
+                            <h1>Gerenciar Produtos - Ferramentaria</h1>
+                        </div>
                         <div class="user-info">
                             <span>Usuário: Admin</span>
                             <button class="logout-btn" id="logoutBtn">Sair</button>
                         </div>
+                        <nav>
+                            <ul>
+                                <li><a href="index.html">Visualizar Estoque</a></li>
+                            </ul>
+                        </nav>
                     </div>
-                    <nav>
-                        <ul>
-                            <li><a href="index.html">Visualizar Estoque</a></li>
-                        </ul>
-                    </nav>
                 </div>
             </header>
 
@@ -550,6 +657,7 @@
     </div>
 
     <script>
+        // O restante do código JavaScript permanece o mesmo
         const firebaseConfig = {
             apiKey: "AIzaSyDk4G22OBWTsF_kHqlLSqKD3qMqGXH4ct8",
             authDomain: "sorteio-fc2fd.firebaseapp.com",
